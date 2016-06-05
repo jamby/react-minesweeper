@@ -11,10 +11,7 @@ class DifficultyForm extends Component {
   ]
 
   componentWillMount() {
-    const { width, height, mines } = DifficultyForm.diffValues[0];
-    let gameBoard = this.createBoard(width, height);
-    gameBoard = this.setMines(gameBoard, width, height, mines);
-    this.props.updateGameBoard(gameBoard);
+    this.setBoard(0);
   }
 
   createBoard(width, height) {
@@ -31,12 +28,24 @@ class DifficultyForm extends Component {
       while (isMine === false) {
         let x = parseInt(Math.random(width) * width);
         let y = parseInt(Math.random(height) * height);
-        if (gameBoard[x][y].isMine === false) {
-          isMine = gameBoard[x][y].isMine = true;
+        if (gameBoard[y][x].isMine === false) {
+          isMine = gameBoard[y][x].isMine = true;
         }
       }
     });
     return gameBoard;
+  }
+
+  setBoard(value) {
+    // console.log(value.target.value);
+    const { width, height, mines } = DifficultyForm.diffValues[value];
+    let gameBoard = this.createBoard(width, height);
+    gameBoard = this.setMines(gameBoard, width, height, mines);
+    this.props.updateGameBoard(gameBoard);
+  }
+
+  setDifficulty(e) {
+    this.setBoard(e.target.value);
   }
 
   renderDifficulty(index) {

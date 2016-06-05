@@ -19,7 +19,7 @@ class GameCell extends Component {
 
     return (
       <span className={classes} onClick={this.onClick}>
-        {cell.isMine}
+        {cell.isMine && '💥'}
       </span>
     );
   }
