@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import autobind from "autobind-decorator";
 
-require('bootstrap');
 require("./app.scss");
 import DifficultyForm from "./components/DifficultyForm"
 import GameBoard from "./components/GameBoard"
@@ -20,8 +19,10 @@ class App extends Component {
 
   render() {
     return(
-      <div>
-        <h1>Minesweeper</h1>
+      <div className="container">
+        <div className="jumbotron">
+          <h1>Minesweeper</h1>
+        </div>
         <DifficultyForm
           updateGameBoard={this.updateGameBoard}
         />
