@@ -37,7 +37,6 @@ class DifficultyForm extends Component {
   }
 
   setBoard(value) {
-    // console.log(value.target.value);
     const { width, height, mines } = DifficultyForm.diffValues[value];
     let gameBoard = this.createBoard(width, height);
     gameBoard = this.setMines(gameBoard, width, height, mines);

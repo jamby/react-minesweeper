@@ -5,11 +5,13 @@ import autobind from "autobind-decorator";
 @autobind
 class GameCell extends Component {
   onClick(e) {
-    console.log(this.props.cell);
+    let { cell, position } = this.props.cell;
+    if (!cell.isOpened) cell.isOpened = !cell.isOpened;
+    this.props.updateCell(position.x, position.y, cell);
   }
 
   render() {
-    const { cell } = this.props;
+    const { cell } = this.props.cell;
     const { isOpened, val } = cell;
 
     let classes = classNames({
