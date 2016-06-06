@@ -20,6 +20,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
+    new webpack.ProvidePlugin({ _: "underscore" })
   ]
 };

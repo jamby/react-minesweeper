@@ -1,8 +1,8 @@
-var _ = require('underscore');
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import autobind from "autobind-decorator";
 
+require('bootstrap');
 require("./app.scss");
 import DifficultyForm from "./components/DifficultyForm"
 import GameBoard from "./components/GameBoard"

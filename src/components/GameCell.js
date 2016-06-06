@@ -1,5 +1,6 @@
 var classNames = require('classnames');
 import React, { Component } from "react";
+import FontAwesome from "react-fontawesome";
 import autobind from "autobind-decorator";
 
 @autobind
@@ -21,6 +22,7 @@ class GameCell extends Component {
 
     return (
       <span className={classes} onClick={this.onClick}>
+        {cell.isMine && (<FontAwesome name="bomb"/>)}
       </span>
     );
   }

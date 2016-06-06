@@ -1,4 +1,3 @@
-var _ = require('underscore');
 import React, { Component } from "react";
 import autobind from "autobind-decorator";
 

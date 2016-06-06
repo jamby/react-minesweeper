@@ -7,7 +7,7 @@ import GameRow from "./GameRow"
 class GameBoard extends Component {
   updateCell(x, y, info) {
     let { gameBoard } = this.props;
-    gameBoard[y][x] = info;
+    gameBoard[x][y] = info;
     this.props.updateGameBoard(gameBoard);
   }
 
