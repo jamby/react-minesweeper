@@ -24,9 +24,9 @@ class GameBoard extends Component {
   render() {
     const { gameBoard } = this.props;
     return (
-      <span>
+      <div>
         {gameBoard.map(this.renderRow)}
-      </span>
+      </div>
     );
   }
 }

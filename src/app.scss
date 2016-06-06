@@ -1,0 +1,21 @@
+.cell {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  border: 1px solid black;
+  text-align: center;
+  &:hover {
+    background-color: salmon;
+    cursor: pointer;
+  }
+}
+
+.cell-opened {
+  @extend .cell;
+  background-color: #d3d3d3;
+}
+
+.mine-cell {
+  background-color: orange;
+}

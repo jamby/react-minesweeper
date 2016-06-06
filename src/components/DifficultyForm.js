@@ -26,10 +26,10 @@ class DifficultyForm extends Component {
     _.times(mines, (mine) => {
       let isMine = false;
       while (isMine === false) {
-        let x = parseInt(Math.random(width) * width);
-        let y = parseInt(Math.random(height) * height);
-        if (gameBoard[y][x].isMine === false) {
-          isMine = gameBoard[y][x].isMine = true;
+        let x = parseInt(Math.random(height) * height);
+        let y = parseInt(Math.random(width) * width);
+        if (gameBoard[x][y].isMine === false) {
+          isMine = gameBoard[x][y].isMine = true;
         }
       }
     });

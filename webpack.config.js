@@ -16,7 +16,7 @@ module.exports = {
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react', 'es2015', 'stage-0'], plugins: ['transform-decorators-legacy'] } },
       { test: /\.jsx$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react', 'es2015', 'stage-0'], plugins: ['transform-decorators-legacy'] } },
       { test: /\.css$/, loader: "style-loader!css-loader" },
-      { test: /\.sass$/, loader: 'style-loader!css-loader!sass-loader'}
+      { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader'}
     ]
   },
   plugins: [

@@ -6,25 +6,24 @@ import GameCell from "./GameCell"
 @autobind
 class GameRow extends Component {
   renderCell(cell, index) {
-    const y = this.props.row.index
+    const x = this.props.row.index
 
     return (
       <GameCell
         key={index}
-        cell={{ cell: cell, position: { x: index, y: y }}}
+        cell={{ cell: cell, position: { x: x, y: index }}}
         updateCell={this.props.updateCell}
       />
     );
   }
 
   render() {
-    const { row } = this.props;
+    const { row } = this.props.row;
 
     return (
-      <span>
-        <br/>
-        {row.row.map(this.renderCell)}
-      </span>
+      <div>
+        {row.map(this.renderCell)}
+      </div>
     );
   }
 }
