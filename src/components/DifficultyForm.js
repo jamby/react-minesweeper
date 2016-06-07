@@ -22,6 +22,7 @@ class DifficultyForm extends Component {
   }
 
   setMines(gameBoard, width, height, mines) {
+    let minesMade = [];
     _.times(mines, (mine) => {
       let isMine = false;
       while (isMine === false) {
@@ -29,10 +30,27 @@ class DifficultyForm extends Component {
         let y = parseInt(Math.random(width) * width);
         if (gameBoard[x][y].isMine === false) {
           isMine = gameBoard[x][y].isMine = true;
+          minesMade.push({x: x, y: y});
         }
       }
     });
+    gameBoard = this.setBombTouchingSpots(gameBoard, minesMade);
     return gameBoard;
+  }
+
+  setBombTouchingSpots(gameBoard, mines) {
+    _.times(mines.length, (i) => {
+      for (let x = -1; x <= 1; x++) {
+        for (let y = -1; y <= 1; y++) {
+          if (gameBoard[mines[i].x + x] === undefined || gameBoard[mines[i].x + x][mines[i].y + y] === undefined) continue;
+          if (x == 0 && y == 0) continue;
+          if (gameBoard[mines[i].x + x][mines[i].y + y].isMine) continue;
+          gameBoard[mines[i].x + x][mines[i].y + y].val += 1;
+        }
+      }
+    });
+
+    return gameBoard
   }
 
   setBoard(value) {
