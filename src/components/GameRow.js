@@ -21,7 +21,7 @@ class GameRow extends Component {
     const { row } = this.props.row;
 
     return (
-      <div>
+      <div className="ms-row">
         {row.map(this.renderCell)}
       </div>
     );

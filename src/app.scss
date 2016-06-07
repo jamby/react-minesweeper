@@ -1,7 +1,9 @@
-.cell {
+.ms-row { clear: both; }
+.ms-cell {
   display: inline-block;
   width: 25px;
   height: 25px;
+  float: left;
   background-color: gray;
   border: 1px solid black;
   text-align: center;
@@ -11,9 +13,13 @@
   }
 }
 
-.cell-opened {
-  @extend .cell;
+.ms-cell-opened {
+  @extend .ms-cell;
   background-color: #d3d3d3;
+  &:hover {
+    background-color: #d3d3d3;
+    cursor: pointer;
+  }
 }
 
 .mine-cell {

@@ -15,15 +15,15 @@ class GameCell extends Component {
     const { isOpened, val } = cell;
 
     let classes = classNames({
-      'cell': isOpened === false,
-      'cell-opened': isOpened === true
+      'ms-cell': isOpened === false,
+      'ms-cell-opened': isOpened === true
     });
 
     return (
-      <span className={classes} onClick={this.onClick}>
+      <div className={classes} onClick={this.onClick}>
         {cell.isMine && 'B'}
         {cell.val != 0 && `${cell.val}`}
-      </span>
+      </div>
     );
   }
 }
