@@ -15,3 +15,6 @@ npm start
 ###### Note
 
 Used the base of this project from my friend, [Nick](www.github.com/nbucciarelli) and his [Minesweeper](https://github.com/nbucciarelli/minesweeper-frontend).
+
+Colors and stuff  
+![Minesweeper image](https://dl.dropboxusercontent.com/u/13142135/codepen/minesweeper.png)
