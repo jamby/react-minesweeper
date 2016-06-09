@@ -4,7 +4,7 @@
   width: 25px;
   height: 25px;
   float: left;
-  background-color: gray;
+  background-color: #BCBCBC;
   border: 1px solid black;
   text-align: center;
   &:hover {
@@ -25,3 +25,12 @@
 .mine-cell {
   background-color: orange;
 }
+
+.ms-1 { color: #0000FF; }
+.ms-2 { color: #437A0B; }
+.ms-3 { color: #DD0000; }
+.ms-4 { color: #00007A; }
+.ms-5 { color: #690000; }
+.ms-6 { color: #42797A; }
+.ms-7 { color: #000000; }
+.ms-8 { color: #787878; }

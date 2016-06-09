@@ -5,8 +5,13 @@ import autobind from "autobind-decorator";
 @autobind
 class GameCell extends Component {
   onClick(e) {
+    e.preventDefault();
     let { cell, position } = this.props.cell;
-    if (!cell.isOpened) cell.isOpened = !cell.isOpened;
+    if (e.type == 'contextmenu') { // Right click
+      
+    } else { // Left click
+      if (!cell.isOpened) cell.isOpened = !cell.isOpened;
+    }
     this.props.updateCell(position.x, position.y, cell);
   }
 
@@ -18,9 +23,10 @@ class GameCell extends Component {
       'ms-cell': isOpened === false,
       'ms-cell-opened': isOpened === true
     });
+    let valClass = cell.val != 0 ? `ms-${cell.val}` : '';
 
     return (
-      <div className={classes} onClick={this.onClick}>
+      <div className={`${classes} ${valClass}`} onClick={this.onClick} onContextMenu={this.onClick}>
         {cell.isMine && 'B'}
         {cell.val != 0 && `${cell.val}`}
       </div>
