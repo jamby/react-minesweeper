@@ -6,7 +6,7 @@ class DifficultyForm extends Component {
   static diffValues = [
     { value: "Beginner", width: 9, height: 9, mines: 10 },
     { value: "Intermediate", width: 16, height: 16, mines: 40 },
-    { value: "Expert", width: 16, height: 30, mines: 99 },
+    { value: "Expert", width: 30, height: 16, mines: 99 },
   ]
 
   componentWillMount() {
@@ -16,7 +16,7 @@ class DifficultyForm extends Component {
   createBoard(width, height) {
     return _.range(height).map(() => {
       return _.range(width).map(() => {
-        return { val: 0, isOpened: false, isMine: false };
+        return { val: 0, isOpened: false, isMine: false, isFlagged: false };
       });
     });
   }

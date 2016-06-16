@@ -8,9 +8,9 @@ class GameCell extends Component {
     e.preventDefault();
     let { cell, position } = this.props.cell;
     if (e.type == 'contextmenu') { // Right click
-      
+      cell.isFlagged = true;
     } else { // Left click
-      if (!cell.isOpened) cell.isOpened = !cell.isOpened;
+      if (!cell.isOpened && cell.isFlagged === false) cell.isOpened = !cell.isOpened;
     }
     this.props.updateCell(position.x, position.y, cell);
   }
