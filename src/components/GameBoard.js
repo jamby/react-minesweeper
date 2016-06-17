@@ -1,21 +1,25 @@
 import React, { Component } from "react";
 import autobind from "autobind-decorator";
 
-import GameRow from "./GameRow"
+import GameRow from './GameRow';
+import StatusTypes from '../constants/statusTypes';
 
 @autobind
 class GameBoard extends Component {
   updateCell(x, y, status) {
     let { gameBoard } = this.props;
     switch(status) {
-      case 'OPENED':
+      case StatusTypes.OPENED:
         gameBoard = this.clearAdjacentCells(gameBoard, { x: x, y: y });
         break;
-      case 'FLAGGED':
-        gameBoard[x][y].status = 'FLAGGED';
+      case StatusTypes.FLAGGED:
+        gameBoard[x][y].status = StatusTypes.FLAGGED;
         break;
-      case 'BOMBED':
-        gameBoard[x][y].status = 'BOMBED';
+      case StatusTypes.BOMBED:
+        gameBoard[x][y].status = StatusTypes.BOMBED;
+        break;
+      case null:
+        gameBoard[x][y].status = null;
         break;
       default:
         console.log(`something else happened: [${x}][${y}], ${status}`);
@@ -29,8 +33,8 @@ class GameBoard extends Component {
 
     if ((x > -1 && y > -1) &&
         (x < gameBoard.length && y < _.first(gameBoard).length) &&
-        gameBoard[x][y].status !== 'OPENED' && gameBoard[x][y].status !== 'FLAGGED') {
-      gameBoard[x][y].status = 'OPENED';
+        gameBoard[x][y].status === null) {
+      gameBoard[x][y].status = StatusTypes.OPENED;
 
       if (gameBoard[x][y].bombCount === 0) {
         for (let xx = -1; xx <= 1; xx++) {

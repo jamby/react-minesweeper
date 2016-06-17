@@ -2,19 +2,28 @@ var classNames = require('classnames');
 import React, { Component } from "react";
 import autobind from "autobind-decorator";
 
+import StatusTypes from '../constants/statusTypes';
+
 @autobind
 class GameCell extends Component {
   onClick(e) {
     e.preventDefault();
     let { cell, position } = this.props.cell;
     let status = null;
+
     if (e.type == 'contextmenu') { // Right click
-      status = 'FLAGGED';
+      if (cell.status === null) {
+        status = StatusTypes.FLAGGED;
+      } else if (cell.status === StatusTypes.FLAGGED) {
+        status = null;
+      }
     } else { // Left click
+      if (cell.status !== null) return;
+
       if (cell.isMine) {
-        status = 'BOMBED';
+        status = StatusTypes.BOMBED;
       } else if (status === null) {
-        status = 'OPENED';
+        status = StatusTypes.OPENED;
       }
     }
     this.props.updateCell(position.x, position.y, status);
@@ -25,9 +34,9 @@ class GameCell extends Component {
     const { bombCount, status } = cell;
 
     let classes = classNames({
-      'ms-cell': status === null,
-      'ms-cell-opened': status === 'OPENED',
-      'ms-flag': status === 'FLAGGED'
+      'ms-cell': status === null || status === StatusTypes.FLAGGED,
+      'ms-cell-opened': status === StatusTypes.OPENED || status === StatusTypes.BOMBED,
+      'ms-flag': status === StatusTypes.FLAGGED
     });
     let bombCountClass = cell.bombCount != 0 ? `ms-${cell.bombCount}` : '';
 
