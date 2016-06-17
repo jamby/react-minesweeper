@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import autobind from 'autobind-decorator';
 
 import GameRow from './GameRow';
 import StatusTypes from '../constants/statusTypes';

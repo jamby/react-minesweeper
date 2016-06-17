@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import autobind from 'autobind-decorator';
 
-require("./app.scss");
-import DifficultyForm from "./components/DifficultyForm"
-import GameBoard from "./components/GameBoard"
+require('./app.scss');
+import DifficultyForm from './components/DifficultyForm';
+import GameBoard from './components/GameBoard';
 
 @autobind
 class App extends Component {
@@ -19,8 +19,8 @@ class App extends Component {
 
   render() {
     return(
-      <div className="container">
-        <div className="jumbotron">
+      <div className='container'>
+        <div className='jumbotron'>
           <h1>Minesweeper</h1>
         </div>
         <DifficultyForm

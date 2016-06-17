@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import autobind from 'autobind-decorator';
 
-import GameCell from "./GameCell"
+import GameCell from './GameCell';
 
 @autobind
 class GameRow extends Component {

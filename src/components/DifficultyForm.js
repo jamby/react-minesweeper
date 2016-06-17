@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import autobind from "autobind-decorator";
+import React, { Component } from 'react';
+import autobind from 'autobind-decorator';
 
 @autobind
 class DifficultyForm extends Component {
   static diffValues = [
-    { value: "Beginner", width: 9, height: 9, mines: 10 },
-    { value: "Intermediate", width: 16, height: 16, mines: 40 },
-    { value: "Expert", width: 30, height: 16, mines: 99 },
+    { value: 'Beginner', width: 9, height: 9, mines: 10 },
+    { value: 'Intermediate', width: 16, height: 16, mines: 40 },
+    { value: 'Expert', width: 30, height: 16, mines: 99 },
   ]
 
   componentWillMount() {
@@ -78,9 +78,9 @@ class DifficultyForm extends Component {
     const diffValues = DifficultyForm.diffValues;
     return (
       <form>
-        <div className="form-group">
-          <label className="difficulty">Difficulty</label>
-          <select className="form-control" onChange={this.setDifficulty}>
+        <div className='form-group'>
+          <label className='difficulty'>Difficulty</label>
+          <select className='form-control' onChange={this.setDifficulty}>
             {_.keys(diffValues).map(this.renderDifficulty)}
           </select>
         </div>
