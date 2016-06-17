@@ -5,20 +5,20 @@ import GameRow from "./GameRow"
 
 @autobind
 class GameBoard extends Component {
-  updateCell(x, y, info) {
-    console.log(info);
+  updateCell(x, y, status) {
     let { gameBoard } = this.props;
-    switch(info) {
+    switch(status) {
       case 'OPENED':
         gameBoard = this.clearAdjacentCells(gameBoard, { x: x, y: y });
         break;
       case 'FLAGGED':
-        gameBoard[x][y].isFlagged = true;
+        gameBoard[x][y].status = 'FLAGGED';
         break;
       case 'BOMBED':
+        gameBoard[x][y].status = 'BOMBED';
         break;
       default:
-        console.log(`something else happened: [${x}][${y}], ${info}`);
+        console.log(`something else happened: [${x}][${y}], ${status}`);
     }
 
     this.props.updateGameBoard(gameBoard);
@@ -29,8 +29,8 @@ class GameBoard extends Component {
 
     if ((x > -1 && y > -1) &&
         (x < gameBoard.length && y < _.first(gameBoard).length) &&
-        !gameBoard[x][y].isOpened && !gameBoard[x][y].isFlagged) {
-      gameBoard[x][y].isOpened = true;
+        gameBoard[x][y].status !== 'OPENED' && gameBoard[x][y].status !== 'FLAGGED') {
+      gameBoard[x][y].status = 'OPENED';
 
       if (gameBoard[x][y].bombCount === 0) {
         for (let xx = -1; xx <= 1; xx++) {

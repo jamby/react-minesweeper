@@ -16,7 +16,7 @@ class DifficultyForm extends Component {
   createBoard(width, height) {
     return _.range(height).map(() => {
       return _.range(width).map(() => {
-        return { bombCount: 0, isOpened: false, isMine: false, isFlagged: false };
+        return { bombCount: 0, isMine: false, status: null };
       });
     });
   }

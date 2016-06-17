@@ -7,23 +7,27 @@ class GameCell extends Component {
   onClick(e) {
     e.preventDefault();
     let { cell, position } = this.props.cell;
-    let info = null;
+    let status = null;
     if (e.type == 'contextmenu') { // Right click
-      info = 'FLAGGED';
+      status = 'FLAGGED';
     } else { // Left click
-      if (!cell.isOpened && cell.isFlagged === false) info = 'OPENED';
+      if (cell.isMine) {
+        status = 'BOMBED';
+      } else if (status === null) {
+        status = 'OPENED';
+      }
     }
-    this.props.updateCell(position.x, position.y, info);
+    this.props.updateCell(position.x, position.y, status);
   }
 
   render() {
     const { cell } = this.props.cell;
-    const { bombCount, isOpened, isFlagged } = cell;
+    const { bombCount, status } = cell;
 
     let classes = classNames({
-      'ms-cell': isOpened === false,
-      'ms-cell-opened': isOpened === true,
-      'ms-flag': isFlagged === true
+      'ms-cell': status === null,
+      'ms-cell-opened': status === 'OPENED',
+      'ms-flag': status === 'FLAGGED'
     });
     let bombCountClass = cell.bombCount != 0 ? `ms-${cell.bombCount}` : '';
 
