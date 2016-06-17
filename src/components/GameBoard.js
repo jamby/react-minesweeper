@@ -14,11 +14,13 @@ class GameBoard extends Component {
         break;
       case StatusTypes.FLAGGED:
         gameBoard[x][y].status = StatusTypes.FLAGGED;
+        this.props.subtractMine();
         break;
       case StatusTypes.BOMBED:
         gameBoard[x][y].status = StatusTypes.BOMBED;
         break;
       case null:
+        if (gameBoard[x][y].status === StatusTypes.FLAGGED) this.props.addMine();
         gameBoard[x][y].status = null;
         break;
       default:

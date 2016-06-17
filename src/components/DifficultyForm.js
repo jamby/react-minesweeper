@@ -57,11 +57,11 @@ class DifficultyForm extends Component {
     const { width, height, mines } = DifficultyForm.diffValues[value];
     let gameBoard = this.createBoard(width, height);
     gameBoard = this.setMines(gameBoard, width, height, mines);
-    this.props.updateGameBoard(gameBoard);
+    this.props.updateState({ gameBoard: gameBoard, mines: mines });
   }
 
-  setDifficulty(e) {
-    this.setBoard(e.target.value);
+  setDifficulty() {
+    this.setBoard(this.refs.difficulty.value);
   }
 
   renderDifficulty(index) {
@@ -77,13 +77,16 @@ class DifficultyForm extends Component {
   render() {
     const diffValues = DifficultyForm.diffValues;
     return (
-      <form>
-        <div className='form-group'>
+      <form className='form-inline row'>
+        <div className='col-xs-4'>{this.props.minesRemaining}</div>
+        <div className='form-group col-xs-4'>
+          <a className="btn btn-primary" onClick={this.setDifficulty}>Reset</a>
           <label className='difficulty'>Difficulty</label>
-          <select className='form-control' onChange={this.setDifficulty}>
+          <select className='form-control' ref='difficulty' onChange={this.setDifficulty}>
             {_.keys(diffValues).map(this.renderDifficulty)}
           </select>
         </div>
+        <div className='col-xs-4'>Timer</div>
       </form>
     );
   }

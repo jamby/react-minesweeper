@@ -10,11 +10,23 @@ import GameBoard from './components/GameBoard';
 class App extends Component {
   constructor() {
     super();
-    this.state = { gameBoard: [] };
+    this.state = { gameBoard: [], mines: 0 };
+  }
+
+  updateState(state) {
+    this.setState(state);
   }
 
   updateGameBoard(gameBoard) {
     this.setState({ gameBoard: gameBoard });
+  }
+
+  addMine() {
+    this.setState({ mines: this.state.mines + 1 });
+  }
+
+  subtractMine() {
+    this.setState({ mines: this.state.mines - 1});
   }
 
   render() {
@@ -24,11 +36,14 @@ class App extends Component {
           <h1>Minesweeper</h1>
         </div>
         <DifficultyForm
-          updateGameBoard={this.updateGameBoard}
+          minesRemaining={this.state.mines}
+          updateState={this.updateState}
         />
         <GameBoard
           gameBoard={this.state.gameBoard}
           updateGameBoard={this.updateGameBoard}
+          addMine={this.addMine}
+          subtractMine={this.subtractMine}
         />
       </div>
     )
