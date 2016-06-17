@@ -16,7 +16,7 @@ class DifficultyForm extends Component {
   createBoard(width, height) {
     return _.range(height).map(() => {
       return _.range(width).map(() => {
-        return { val: 0, isOpened: false, isMine: false, isFlagged: false };
+        return { bombCount: 0, isOpened: false, isMine: false, isFlagged: false };
       });
     });
   }
@@ -34,18 +34,18 @@ class DifficultyForm extends Component {
         }
       }
     });
-    gameBoard = this.setBombTouchingSpots(gameBoard, minesMade);
+    gameBoard = this.setBombCount(gameBoard, minesMade);
     return gameBoard;
   }
 
-  setBombTouchingSpots(gameBoard, mines) {
+  setBombCount(gameBoard, mines) {
     _.times(mines.length, (i) => {
       for (let x = -1; x <= 1; x++) {
         for (let y = -1; y <= 1; y++) {
           if (gameBoard[mines[i].x + x] === undefined || gameBoard[mines[i].x + x][mines[i].y + y] === undefined) continue;
           if (x == 0 && y == 0) continue;
           if (gameBoard[mines[i].x + x][mines[i].y + y].isMine) continue;
-          gameBoard[mines[i].x + x][mines[i].y + y].val += 1;
+          gameBoard[mines[i].x + x][mines[i].y + y].bombCount += 1;
         }
       }
     });
