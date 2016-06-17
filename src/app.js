@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   subtractMine() {
-    this.setState({ mines: this.state.mines - 1});
+    if (this.state.mines > 0) this.setState({ mines: this.state.mines - 1 });
   }
 
   render() {
@@ -41,6 +41,7 @@ class App extends Component {
         />
         <GameBoard
           gameBoard={this.state.gameBoard}
+          minesRemaining={this.state.mines}
           updateGameBoard={this.updateGameBoard}
           addMine={this.addMine}
           subtractMine={this.subtractMine}

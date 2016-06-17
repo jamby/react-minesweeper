@@ -13,8 +13,10 @@ class GameBoard extends Component {
         gameBoard = this.clearAdjacentCells(gameBoard, { x: x, y: y });
         break;
       case StatusTypes.FLAGGED:
-        gameBoard[x][y].status = StatusTypes.FLAGGED;
-        this.props.subtractMine();
+        if (this.props.minesRemaining > 0) {
+          gameBoard[x][y].status = StatusTypes.FLAGGED;
+          this.props.subtractMine();
+        }
         break;
       case StatusTypes.BOMBED:
         gameBoard[x][y].status = StatusTypes.BOMBED;
