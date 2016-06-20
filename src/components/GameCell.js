@@ -9,24 +9,22 @@ class GameCell extends Component {
   onClick(e) {
     e.preventDefault();
     let { cell, position } = this.props.cell;
-    let status = null;
 
     if (e.type == 'contextmenu') { // Right click
       if (cell.status === null) {
-        status = StatusTypes.FLAGGED;
+        this.props.updateCell(position.x, position.y, StatusTypes.FLAGGED);
       } else if (cell.status === StatusTypes.FLAGGED) {
-        status = null;
+        this.props.updateCell(position.x, position.y, null);
       }
     } else { // Left click
       if (cell.status !== null) return;
 
       if (cell.isMine) {
-        status = StatusTypes.BOMBED;
-      } else if (status === null) {
-        status = StatusTypes.OPENED;
+        this.props.updateCell(position.x, position.y, StatusTypes.BOMBED);
+      } else if (cell.status === null) {
+        this.props.updateCell(position.x, position.y, StatusTypes.OPENED);
       }
     }
-    this.props.updateCell(position.x, position.y, status);
   }
 
   render() {
