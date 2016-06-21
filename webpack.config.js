@@ -1,19 +1,24 @@
 var webpack = require('webpack');
 module.exports = {
   entry: {
-    app: [
+    app: './src/app.js',
+    vendor: [
       'webpack/hot/dev-server',
       'bootstrap-loader',
-      './src/app.js'
+      'react',
+      'react-dom',
+      'jquery',
+      'underscore'
     ]
   },
   output: {
     path: './bin',
+    publicPath: '/',
     filename: 'app.bundle.js'
   },
   devServer: {
     contentBase: './views',
-    publicPath: 'http://localhost:8080/bin/'
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -27,6 +32,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
     new webpack.ProvidePlugin({ _: "underscore" })
