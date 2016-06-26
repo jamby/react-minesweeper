@@ -5,6 +5,7 @@ module.exports = {
     vendor: [
       'webpack/hot/dev-server',
       'bootstrap-loader',
+      'font-awesome-loader',
       'react',
       'react-dom',
       'jquery',
